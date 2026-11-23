@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kod Anisinoy//Courses//RU
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:4fe19433ada04f7b8a52da6d6285394c2f6392d52f111f16ab66efcc40599a23-week-4
+ -meeting-2@course.local
+DTSTAMP:20261123T230817Z
+SEQUENCE:0
+STATUS:CONFIRMED
+DTSTART:20261219T110000Z
+SUMMARY:ЮРИДИЧЕСКАЯ И ТЕХНИЧЕСКАЯ ГРАМОТНОС
+ ТЬ ЭКСПЕРТА · Неделя 4 · Встреча 2. Практи
+ ка и разборы
+DESCRIPTION:ЮРИДИЧЕСКАЯ И ТЕХНИЧЕСКАЯ ГРАМОТН
+ ОСТЬ ЭКСПЕРТА\nПоток 1 · 23.11.2026
+BEGIN:VALARM
+TRIGGER:-PT1440M
+ACTION:DISPLAY
+DESCRIPTION:Неделя 4 · Встреча 2. Практика и раз
+ боры
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT60M
+ACTION:DISPLAY
+DESCRIPTION:Неделя 4 · Встреча 2. Практика и раз
+ боры
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Неделя 4 · Встреча 2. Практика и раз
+ боры
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,47 @@
+/* The original mineral dashboard: three jewel-toned cards and a laboratory panel. */
+.portal-home .portal-main{max-width:1240px;padding:32px 40px 50px}
+.portal-home .portal-residence{min-height:375px;padding:45px 34px 42px;margin-bottom:20px}
+.portal-main .hero--residence .hero-copy{width:100%;max-width:100%}
+.portal-home .hero--residence .hero-hologram{right:2%;width:450px;opacity:.35}
+.portal-home .hero--residence .residence-subtitle{margin:20px auto 26px}
+.portal-home .hero--residence .hero-caption{margin-top:18px;font-size:8px;letter-spacing:.08em}
+.portal-home .theme-strip{margin:18px 0 20px}
+.portal-home .metrics{margin-bottom:38px;background:rgba(245,248,250,.38)}
+.portal-home .metrics strong{font-size:30px}
+.portal-home .metrics>div>span:last-child{font-size:10px}
+.portal-home .section-heading{margin-bottom:13px}
+.portal-catalog-caption{font-size:12px;line-height:1.7;max-width:90ch;margin:0 0 22px;color:var(--text-secondary)}
+.portal-home .course-card h3{font-size:21px;min-height:0}
+.portal-home .course-card p{font-size:13px;line-height:1.7;min-height:48px}
+.portal-home .course-card-body{padding:22px 24px 0}
+.portal-home .course-art{height:175px}
+.portal-home .card-meta{font-size:10px;flex-wrap:wrap;gap:6px}
+.portal-home .course-open{font-size:12px;padding:18px 0}
+.portal-card-rule{height:2px;background:var(--accent-primary);opacity:.65;margin-top:22px}
+.portal-lab-link{display:flex;align-items:center;gap:22px;padding:28px;text-decoration:none}
+.portal-lab-link>span:nth-child(2){flex:1;min-width:0}
+.portal-lab-symbol{font-size:44px;color:var(--accent-primary)}
+.portal-lab-link h3{margin:10px 0;font-size:20px}
+.portal-lab-link p{font-size:13px;line-height:1.7}
+.portal-lab-link small{font-size:9px;letter-spacing:.12em;color:var(--text-eyebrow)}
+.portal-home .note-card h3{font-size:26px}
+.portal-home .lower-grid{margin-top:38px}
+.portal-data{padding:18px 24px;background:rgba(245,248,250,.25)}
+.portal-data summary{font-size:13px;font-weight:600;cursor:pointer;min-height:24px}
+.portal-data[open] summary{margin-bottom:16px}
+.portal-inner .portal-residence{min-height:250px;padding:30px 24px}
+.portal-inner .portal-residence .residence-kicker,.portal-inner .portal-residence .residence-name{font-size:clamp(1.65rem,3vw,2.8rem)}
+.portal-inner .course-card h3{font-size:19px;min-height:0}
+.portal-inner .course-card p{font-size:12px;line-height:1.7}
+.link-portal .topbar{padding-left:30px;padding-right:30px;min-height:70px}
+.link-portal .topbar-title{font-size:13px}
+.link-portal a.topbar-title{color:var(--text-primary);text-decoration:none}
+.course-locked{color:var(--text-secondary);cursor:default}
+.is-locked .status-dot{color:var(--text-secondary)}
+.is-locked .status-dot::before{background:#89919b}
+.is-locked:hover{transform:none}
+.course-card h3{overflow-wrap:anywhere}
+@media(max-width:1100px){.portal-home .portal-main{padding:28px}.portal-home .course-grid{gap:18px}.portal-home .course-card-body{padding:19px 18px 0}.portal-home .course-card h3{font-size:19px}}
+@media(min-width:981px){.portal-home .course-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.portal-home .portal-main{padding:22px 16px 35px}.portal-home .portal-residence{padding:35px 18px;min-height:340px}.portal-home .hero--residence .hero-hologram{width:340px;right:-100px;opacity:.25}.portal-home .hero--residence .hero-caption{font-size:7px}.portal-home .metrics{margin-bottom:28px}.portal-home .metrics>div>span:last-child{font-size:9px}.portal-home .course-art{height:165px}.portal-home .course-card p{min-height:0}.portal-home .course-card-body{padding:22px 22px 0}.portal-home .course-card h3{font-size:22px}.portal-home .lower-grid{margin-top:30px}.portal-lab-link{padding:22px;gap:15px}.portal-lab-link h3{font-size:18px}.portal-lab-symbol{font-size:32px}.link-portal .topbar{padding:16px}.link-portal .topbar-title{font-size:12px}.portal-home .today{display:none}.portal-catalog-caption{font-size:12px}.portal-data{padding:17px}.portal-inner .portal-residence{min-height:0;padding:28px 16px}}
+.course-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.course-art:has(.course-cover) .art-grid,.course-art:has(.course-cover) .art-orbit{opacity:.12}
