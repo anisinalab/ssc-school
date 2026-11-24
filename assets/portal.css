@@ -10,3 +10,27 @@
 .timezone-control { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-block: 1rem; }
 .timezone-control select { max-width: 100%; min-width: 0; font: inherit; color: var(--text-primary); background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: .6rem; }
 .visitor-welcome p { white-space: pre-line; }
+/* Self-assessed completion keeps the existing card layout and all lesson links. */
+.lesson-progress-summary{padding:22px 26px;margin:0 0 22px}
+.lesson-progress-summary:hover{transform:none}
+.lesson-progress-heading{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:14px}
+.lesson-progress-heading strong{font-weight:600}
+.lesson-progress-summary progress{display:block;width:100%;height:8px;margin:16px 0 12px;border:0;border-radius:8px;overflow:hidden;background:rgba(24,28,32,.08);accent-color:#24744F}
+.lesson-progress-summary progress::-webkit-progress-bar{background:rgba(24,28,32,.08);border-radius:8px}
+.lesson-progress-summary progress::-webkit-progress-value{background:#24744F;border-radius:8px}
+.lesson-progress-summary progress::-moz-progress-bar{background:#24744F;border-radius:8px}
+.lesson-progress-summary small{display:block;font-size:12px;color:var(--text-secondary);line-height:1.6}
+.lesson-completion{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:24px;padding-top:16px;border-top:1px solid var(--border-subtle);font-size:14px}
+.lesson-completion label{display:inline-flex;align-items:center;gap:10px;min-height:44px;cursor:pointer}
+.lesson-completion input{width:21px;height:21px;flex-shrink:0;margin:0;accent-color:#24744F;cursor:pointer}
+.lesson-completion input:focus-visible{outline:3px solid var(--accent-primary);outline-offset:4px}
+.lesson-completion input:disabled{cursor:not-allowed}
+.lesson-completion-status{font-size:12px;color:var(--text-secondary)}
+.portal-lesson.is-completed{background:#E0F5EA;border-color:rgba(36,116,79,.25)}
+.is-completed .lesson-completion-status{color:#1B613F;font-weight:700}
+@media(max-width:600px){.lesson-progress-summary{padding:20px}.lesson-completion{align-items:flex-start;flex-direction:column;gap:4px}}
+.module-completion{font-size:12px;line-height:1.7;color:var(--text-secondary);overflow-wrap:anywhere}
+.module-index-row.is-module-completed,.module-index-row.is-module-completed:hover,.portal-week.is-module-completed{background:#E0F5EA}
+.portal-week.is-module-completed{border-radius:12px;padding:16px 20px}
+.is-module-completed .module-completion,.is-module-completed .module-completion small{color:#1B613F}
+.is-module-completed [data-module-status]{font-weight:700}
