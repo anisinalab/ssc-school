@@ -13,62 +13,28 @@
     return {total, done, finished, percent, state};
   }
   async function mount(root, store) {
-    const scope = {courseId: root.dataset.progressCourse, cohortId: root.dataset.progressCohort};
-    const cards = [...root.querySelectorAll('[data-lesson-id]')];
-    const available = new Set(cards.filter(c => c.dataset.lessonAvailable === 'true').map(c => c.dataset.lessonId));
-    const lessons = cards.map(card => ({id: card.dataset.lessonId, moduleId: card.dataset.moduleId,
-      available: card.dataset.lessonAvailable === 'true'}));
-    const modules = [...root.querySelectorAll('[data-module-progress]')];
-    const count = root.querySelector('[data-progress-count]');
-    const meter = root.querySelector('[data-progress-meter]');
-    const error = root.querySelector('[data-progress-error]');
-    let completed = new Set(), busy = true;
-    const clean = ids => new Set(ids.filter(id => available.has(id)));
-    function render() {
-      cards.forEach(card => {
-        const id = card.dataset.lessonId, done = available.has(id) && completed.has(id);
-        const checkbox = card.querySelector('[data-lesson-complete]');
-        checkbox.checked = done;
-        checkbox.disabled = busy || !available.has(id);
-        card.classList.toggle('is-completed', done);
-        card.querySelector('[data-completion-status]').textContent = done ? '✓ Пройдено' :
-          available.has(id) ? 'Доступен' : 'Откроется по расписанию';
-      });
-      const percent = cards.length ? Math.round(completed.size / cards.length * 100) : 0;
-      count.textContent = `${completed.size} из ${cards.length} · ${percent}%`;
-      meter.max = Math.max(1, cards.length);
-      meter.value = completed.size;
-      modules.forEach(card => {
-        const progress = moduleProgress(lessons, completed, card.dataset.moduleProgress);
-        card.classList.toggle('is-module-completed', progress.finished);
-        card.querySelector('[data-module-status]').textContent = {
-          empty: 'Пока нет уроков', planned: 'Откроется по расписанию',
-          'in-progress': 'В процессе', completed: '✓ Модуль пройден'
-        }[progress.state];
-        card.querySelector('[data-module-count]').textContent = ` · ${progress.done} из ${progress.total} · ${progress.percent}%`;
-      });
+    if (root.sscProgress) return root.sscProgress;
+    const scope={courseId:root.dataset.progressCourse,cohortId:root.dataset.progressCohort};
+    const cards=[...root.querySelectorAll('[data-lesson-id]')],lessons=cards.map(c=>({id:c.dataset.lessonId,moduleId:c.dataset.moduleId,available:c.dataset.lessonAvailable==='true'}));
+    const available=new Set(lessons.filter(l=>l.available).map(l=>l.id)),modules=[...root.querySelectorAll('[data-module-progress]')];
+    let completed=new Set(),busy=true,error=false;const clean=ids=>new Set(ids.filter(id=>available.has(id)));
+    const snapshot=()=>({scope:{...scope},lessons:lessons.map(l=>({...l})),completed:new Set(completed),busy,error});
+    function render(){
+      cards.forEach(card=>{const done=available.has(card.dataset.lessonId)&&completed.has(card.dataset.lessonId),checkbox=card.querySelector('[data-lesson-complete]');checkbox.checked=done;checkbox.disabled=busy||!available.has(card.dataset.lessonId);card.classList.toggle('is-completed',done);card.querySelector('[data-completion-status]').textContent=done?'✓ Пройдено':available.has(card.dataset.lessonId)?'Доступен':'Откроется по расписанию';});
+      const count=root.querySelector('[data-progress-count]'),meter=root.querySelector('[data-progress-meter]');count.textContent=completed.size+' из '+cards.length+' · '+(cards.length?Math.round(completed.size/cards.length*100):0)+'%';meter.max=Math.max(1,cards.length);meter.value=completed.size;
+      modules.forEach(card=>{const p=moduleProgress(lessons,completed,card.dataset.moduleProgress);card.classList.toggle('is-module-completed',p.finished);card.querySelector('[data-module-status]').textContent={empty:'Пока нет уроков',planned:'Откроется по расписанию','in-progress':'В процессе',completed:'✓ Модуль пройден'}[p.state];card.querySelector('[data-module-count]').textContent=' · '+p.done+' из '+p.total+' · '+p.percent+'%';});
+      const message=root.querySelector('[data-progress-error]');message.hidden=!error;if(error)message.textContent='Не удалось прочитать или сохранить прогресс в браузере. Изменение не подтверждено. Проверьте разрешение на хранение данных сайта.';
+      root.dispatchEvent(new CustomEvent('ssc:progress',{detail:snapshot()}));
     }
-    function storageError() {
-      error.textContent = 'Не удалось сохранить прогресс в браузере. Отметки могут исчезнуть после перезагрузки. Проверьте разрешение на хранение данных сайта.';
-      error.hidden = false;
+    async function refresh(){if(busy)return;busy=true;render();try{completed=clean(await store.load(scope));error=false}catch{error=true}busy=false;render();}
+    async function setCompleted(id,value){if(busy||!available.has(id)){render();return false}busy=true;render();let saved=false;
+      try{completed=clean(await store.setCompleted(scope,id,value));error=false;saved=true}catch{error=true}busy=false;render();return saved;
     }
-    try { completed = clean(await store.load(scope)); } catch { storageError(); }
-    busy = false; render();
-    root.addEventListener('change', async event => {
-      const checkbox = event.target;
-      if (!checkbox.matches('[data-lesson-complete]')) return;
-      const card = checkbox.closest('[data-lesson-id]'), id = card?.dataset.lessonId;
-      // Enforce release state even for a synthetic change on a disabled input.
-      if (busy || !available.has(id)) { render(); return; }
-      const checked = checkbox.checked;
-      if (checked) completed.add(id); else completed.delete(id);
-      busy = true; render();
-      try {
-        completed = clean(await store.setCompleted(scope, id, checked));
-        error.hidden = true;
-      } catch { storageError(); }
-      busy = false; render();
-    });
+    root.sscProgress={snapshot,setCompleted,refresh};
+    try{completed=clean(await store.load(scope))}catch{error=true}busy=false;render();
+    root.addEventListener('change',event=>{if(!event.target.matches('[data-lesson-complete]'))return;const card=event.target.closest('[data-lesson-id]');setCompleted(card?.dataset.lessonId,event.target.checked)});
+    window.addEventListener('storage',event=>{if(event.key===SscProgressStorage.key(scope)||event.key===null)refresh()});window.addEventListener('focus',refresh);
+    return root.sscProgress;
   }
   globalThis.SscLessonProgress = {mount, moduleProgress};
   if (typeof module !== 'undefined') module.exports = globalThis.SscLessonProgress;

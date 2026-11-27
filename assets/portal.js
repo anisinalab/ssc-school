@@ -9,13 +9,13 @@
     document.querySelectorAll('time[datetime]').forEach(element=>{
       const value=new Date(element.dateTime);
       if(!Number.isNaN(value.getTime())) {
-        element.textContent=formatter.format(value);
+        element.textContent=formatter.format(value)+' · '+SscTime.label(zone,value);
         // The zone's abbreviation is computed for the event, not today's offset.
         element.title=SscTime.label(zone,value);
       }
     });
     document.querySelectorAll('[data-timezone-label]').forEach(label=>{
-      label.textContent=`Ваше время: ${SscTime.label(zone)}. У каждой даты указан её часовой пояс во всплывающей подсказке.`;
+      label.textContent=`Часовой пояс для просмотра: ${zone}.`;
     });
     selectors.forEach(select=>{select.value=zone;});
   }

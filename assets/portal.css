@@ -34,3 +34,14 @@
 .portal-week.is-module-completed{border-radius:12px;padding:16px 20px}
 .is-module-completed .module-completion,.is-module-completed .module-completion small{color:#1B613F}
 .is-module-completed [data-module-status]{font-weight:700}
+
+.course-welcome p{white-space:pre-line}
+.course-welcome{padding:clamp(20px,3vw,32px);margin:16px 0 24px;border:1px solid var(--border-subtle);border-radius:14px}
+.portal-main .portal-tabs{margin:18px 0 24px}.portal-main #program{margin-top:28px}
+.atlas-practice-hint{display:none}body[data-ssc-mode=atlas] .atlas-practice-hint{display:block;margin-top:10px}
+
+/* Optional view switch is Core UI; Atlas styles are deferred. */
+.atlas-mode-switch [hidden]{display:none!important}
+.atlas-mode-switch[hidden]{display:none!important}.atlas-mode-switch{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:20px 0}.atlas-mode-switch [aria-pressed=true]{border-color:#a47d36;box-shadow:inset 0 0 0 1px #bea263}.atlas-mode-switch [role=status]{font-size:13px}.atlas-back.secondary-button{display:none}
+@media(max-width:620px){.atlas-mode-switch button{flex:1;min-height:48px}}
+.portal-main .course-hero{min-height:0;padding:clamp(22px,3vw,32px)}
