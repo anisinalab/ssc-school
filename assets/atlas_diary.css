@@ -1,0 +1,14 @@
+/* Diary: one editor; advanced migration stays out of the writing flow. */
+.ssc-atlas .diary-return{display:inline-flex;align-items:center;min-height:44px;margin:0 0 18px;font:inherit;font-weight:600}.ssc-atlas .diary-return[hidden]{display:none}.ssc-atlas .diary-return:disabled{opacity:.65;cursor:wait}@media(max-width:600px){.ssc-atlas .diary-return{width:100%;justify-content:center;box-sizing:border-box}}
+.ssc-atlas .diary-quick-editor{clear:both;margin-top:24px}.ssc-atlas .diary-quick-editor textarea{min-height:280px;line-height:1.65;box-sizing:border-box}.ssc-atlas .diary-quick-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 28px}.ssc-atlas .diary-quick-actions button{margin:0}.ssc-atlas .diary-note h4{margin:0 0 8px}.ssc-atlas .diary-note small{display:block}.ssc-atlas .diary-legacy{margin-top:28px;padding-top:18px;border-top:1px solid #c5ac7b}.ssc-atlas .diary-legacy summary{cursor:pointer;min-height:44px;display:list-item}.ssc-atlas [data-diary-status][data-error=true]{color:#922c21;font-weight:600}
+@media(max-width:600px){.ssc-atlas .diary-quick-actions button{flex:1 1 100%}.ssc-atlas .diary-quick-editor textarea{min-height:260px;font-size:16px}}
+
+
+.ssc-atlas .diary-warning{border-left:4px solid #9f7639;padding:12px;background:#f2e1bd}
+
+.ssc-atlas .diary-note{border:1px solid #c5ac7b;padding:16px;margin:12px 0}
+.ssc-atlas .diary-note p{white-space:pre-wrap}
+.ssc-atlas .diary-note a{overflow-wrap:anywhere;text-decoration:underline}
+.ssc-atlas .diary-cover{float:right;width:100px;height:125px;object-fit:cover;margin:0 0 10px 15px}
+
+.ssc-atlas .diary-history-pages{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:16px 0}.ssc-atlas .diary-history-pages[hidden]{display:none}.ssc-atlas .diary-history-pages button{min-height:44px}.ssc-atlas .diary-history-pages button:disabled{opacity:.5;cursor:default}

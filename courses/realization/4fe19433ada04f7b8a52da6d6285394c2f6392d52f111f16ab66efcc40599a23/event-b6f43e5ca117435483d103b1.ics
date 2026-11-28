@@ -5,7 +5,7 @@ CALSCALE:GREGORIAN
 BEGIN:VEVENT
 UID:4fe19433ada04f7b8a52da6d6285394c2f6392d52f111f16ab66efcc40599a23-week-1
  -meeting-2@course.local
-DTSTAMP:20261127T110542Z
+DTSTAMP:20261128T082037Z
 SEQUENCE:0
 STATUS:CONFIRMED
 DTSTART:20261128T110000Z
@@ -13,7 +13,8 @@ SUMMARY:ЮРИДИЧЕСКАЯ И ТЕХНИЧЕСКАЯ ГРАМОТНОС
  ТЬ ЭКСПЕРТА · Неделя 1 · Встреча 2. Практи
  ка и разборы
 DESCRIPTION:ЮРИДИЧЕСКАЯ И ТЕХНИЧЕСКАЯ ГРАМОТН
- ОСТЬ ЭКСПЕРТА\nПоток 1 · 23.11.2026
+ ОСТЬ ЭКСПЕРТА\nЮРИДИЧЕСКАЯ И ТЕХНИЧЕСКА
+ Я ГРАМОТНОСТЬ ЭКСПЕРТА_поток 1 
 BEGIN:VALARM
 TRIGGER:-PT1440M
 ACTION:DISPLAY
